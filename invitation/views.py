@@ -1,25 +1,19 @@
 from datetime import datetime
 from zoneinfo import ZoneInfo
-from django.http import HttpResponse, JsonResponse
-from django.shortcuts import redirect, render
-from django.urls import reverse
+from django.http import HttpResponse
+from django.shortcuts import render
 from django.utils import timezone
-from django.views.decorators.http import require_GET, require_POST
+from django.views.decorators.http import require_GET
 from django.views.decorators.cache import never_cache
-from .forms import RSVPForm
-from .models import GuestResponse
 
 EVENT_DATE = datetime(2026, 10, 31, 18, 0, tzinfo=ZoneInfo("Asia/Tashkent"))
 MAP_URL = "https://maps.app.goo.gl/s7fCjrmRfJhqSfjN9?g_st=atm"
 
 
-def page_context(request, form=None):
-    response = GuestResponse.objects.filter(pk=request.session.get("response_id")).first()
+def page_context():
     return {
         "event_iso": EVENT_DATE.isoformat(),
         "map_url": MAP_URL,
-        "form": form if form is not None else RSVPForm(instance=response),
-        "responded": response is not None,
         "calendar_days": range(1, 32),
         "calendar_blanks": range(3),
     }
@@ -28,34 +22,7 @@ def page_context(request, form=None):
 @require_GET
 @never_cache
 def home(request):
-    return render(request, "invitation/home.html", page_context(request))
-
-
-@require_POST
-def rsvp(request):
-    wants_json = request.headers.get("Accept") == "application/json"
-    now = timezone.now().timestamp()
-    last = request.session.get("last_rsvp", 0)
-    if now - last < 8:
-        text = "Javobingiz saqlangan. Yana yuborishdan oldin bir oz kuting."
-        if wants_json:
-            return JsonResponse({"ok": False, "message": text}, status=429)
-        form = RSVPForm(request.POST)
-        form.is_valid()
-        form.add_error(None, text)
-        return render(request, "invitation/home.html", page_context(request, form), status=429)
-    instance = GuestResponse.objects.filter(pk=request.session.get("response_id")).first()
-    form = RSVPForm(request.POST, instance=instance)
-    if form.is_valid():
-        response = form.save()
-        request.session["response_id"] = response.pk
-        request.session["last_rsvp"] = now
-        if wants_json:
-            return JsonResponse({"ok": True, "message": "Rahmat! Javobingiz va ezgu tilaklaringiz bizga yetib keldi."})
-        return redirect(reverse("home") + "?sent=1#ishtirok")
-    if wants_json:
-        return JsonResponse({"ok": False, "errors": form.errors.get_json_data()}, status=400)
-    return render(request, "invitation/home.html", page_context(request, form), status=400)
+    return render(request, "invitation/home.html", page_context())
 
 
 @require_GET

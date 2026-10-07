@@ -104,8 +104,8 @@
     $('#replay-invitation').hidden = false;
     $('#replay-invitation').addEventListener('click', showEnvelope);
   }
-  // Direct section links and form validation pages must remain immediately usable.
-  if (!previouslyOpened && !location.hash && !$('#form-status').textContent.trim() && typeof welcome.showModal === 'function') {
+  // Direct section links remain immediately usable.
+  if (!previouslyOpened && !location.hash && typeof welcome.showModal === 'function') {
     showEnvelope();
   }
 
@@ -119,76 +119,6 @@
   };
   updateCountdown();
   window.setInterval(updateCountdown, 1000);
-
-  const prayerButton = $('#prayer-button');
-  prayerButton.hidden = false;
-  const showPrayerThanks = () => {
-    prayerButton.classList.add('is-sent');
-    prayerButton.setAttribute('aria-pressed', 'true');
-    prayerButton.querySelector('use').setAttribute('href', '#icon-check');
-    prayerButton.querySelector('span').textContent = 'Alloh qabul qilsin';
-    $('#prayer-thanks').textContent = 'Samimiy duolaringiz uchun rahmat. Omin!';
-  };
-  if (safeStore.get('ag-prayed') === 'yes') showPrayerThanks();
-  else prayerButton.setAttribute('aria-pressed', 'false');
-  prayerButton.addEventListener('click', () => {
-    safeStore.set('ag-prayed', 'yes');
-    showPrayerThanks();
-  });
-
-  const form = $('#rsvp-form');
-  const status = $('#form-status');
-  const updateGuestField = () => {
-    const declined = form.querySelector('[name=attendance]:checked')?.value === 'no';
-    $('#guests-field').hidden = declined;
-    $('#guest-count').disabled = declined;
-  };
-  form.querySelectorAll('[name=attendance]').forEach((radio) => radio.addEventListener('change', updateGuestField));
-  updateGuestField();
-  form.addEventListener('submit', async (event) => {
-    event.preventDefault();
-    const submit = form.querySelector('[type=submit]');
-    if (submit.disabled || !form.reportValidity()) return;
-    submit.disabled = true;
-    submit.querySelector('span').textContent = 'Yuborilmoqda…';
-    status.textContent = '';
-    status.classList.remove('success');
-    form.querySelectorAll('.field-error').forEach((el) => { el.textContent = ''; });
-    form.querySelectorAll('[aria-invalid]').forEach((el) => el.removeAttribute('aria-invalid'));
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), 15000);
-    try {
-      const response = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' }, credentials: 'same-origin', signal: controller.signal });
-      if (!response.headers.get('content-type')?.includes('application/json')) {
-        throw new Error(response.status === 403 ? 'Sahifa muddati tugagan. Sahifani yangilang va qayta urinib ko‘ring.' : 'Javobni yuborib bo‘lmadi. Bir ozdan so‘ng qayta urinib ko‘ring.');
-      }
-      const data = await response.json();
-      if (response.ok && data.ok) {
-        status.classList.add('success');
-        status.textContent = data.message;
-      } else {
-        status.textContent = data.message || 'Iltimos, belgilangan maydonlarni tekshiring.';
-        Object.entries(data.errors || {}).forEach(([field, errors]) => {
-          const target = document.getElementById(field + '-error');
-          const message = errors.map((item) => item.message).join(' ');
-          if (target) target.textContent = message;
-          else status.textContent += ' ' + message;
-          const input = form.elements.namedItem(field);
-          if (input && typeof input.setAttribute === 'function') input.setAttribute('aria-invalid', 'true');
-        });
-      }
-    } catch (error) {
-      status.textContent = error.name === 'AbortError' || error instanceof TypeError
-        ? 'Aloqani tekshiring. Javob yuborilgan bo‘lishi mumkin — qayta yuborsangiz, avvalgi javobingiz yangilanadi.'
-        : error.message;
-    } finally {
-      clearTimeout(timeout);
-      submit.disabled = false;
-      submit.querySelector('span').textContent = 'Javobni yuborish';
-      status.focus({ preventScroll: true });
-      status.scrollIntoView({ behavior: reducedMotion ? 'instant' : 'smooth', block: 'center' });
-    }
-  });
 
   if ('IntersectionObserver' in window && !reducedMotion) {
     const observer = new IntersectionObserver((entries) => {

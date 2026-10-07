@@ -31,8 +31,7 @@ Original SIL Open Font License matnlari `static/invitation/fonts/licenses/` ichi
 - Qur’on, Rum 30:21: https://quran.com/30/21 — oyatning qisqa parcha mazmuni.
 - Nikoh tabrigi duosi: https://sunnah.com/abudawud:2130 — qisqa mazmuniy bayon.
 - Salovat matni Payg‘ambarimiz Muhammad ﷺ ga qaratilgan, kelin-kuyov haqqiga
-  duo alohida. Duo tugmasi faqat shu qurilmada eslab qoladi; global diniy hisob,
-  majburiy son yoki savob da’vosi yo‘q.
+  duo alohida.
 
 ## Musiqa
 

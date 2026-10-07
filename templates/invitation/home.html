@@ -111,14 +111,12 @@
         <div class="prayer-emblem" aria-hidden="true"><svg class="icon"><use href="#icon-star"/></svg></div>
         <p class="eyebrow">ENG GO‘ZAL TO‘YONA — DUO</p>
         <h2>Salovat ayting,<br><em>duoda eslang.</em></h2>
-        <p>Azizlar, Payg‘ambarimiz Muhammad ﷺ ga salovat aytib, yangi hayot ostonasida turgan kelin-kuyov haqqiga duo qilishingizni so‘raymiz.</p>
+        <p>Bu ikki yoshning baxtiga ezgu duolaringiz hamroh bo‘lsin. Alloh ularning hayotini farovon, oilasini mehrga to‘la va barakali qilsin.</p>
         <div class="salawat-card">
           <p class="salawat-arabic" lang="ar" dir="rtl">اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ</p>
           <p class="transliteration">Allohumma solli ‘ala Muhammad<br>va ‘ala oli Muhammad.</p>
           <span class="small-divider" aria-hidden="true"></span>
           <p class="dua-text">Allohim, bu oilaga mehr, xotirjamlik va baraka ato et. Ularni yaxshilikda birlashtir, muhabbatlarini bardavom qil.</p>
-          <button class="button prayer-button" id="prayer-button" type="button" hidden><svg class="icon" aria-hidden="true"><use href="#icon-heart"/></svg><span>Salovat aytdim, duo qildim</span></button>
-          <p class="prayer-thanks" id="prayer-thanks" role="status"></p>
         </div>
         <p class="prayer-footnote">«Alloh sizga baraka bersin va ikkingizni yaxshilikda birlashtirsin.»</p>
         <a class="source-link" href="https://sunnah.com/abudawud:2130" target="_blank" rel="noopener noreferrer">Nikoh tabrigi duosi mazmunidan · Abu Dovud, 2130</a>
@@ -143,23 +141,6 @@
       </div>
     </section>
 
-    <section id="ishtirok" class="rsvp-section section-pad reveal">
-      <div class="section-number" aria-hidden="true">05 <span></span> BIRGA NISHONLAYMIZ</div>
-      <div class="rsvp-layout content-width">
-        <div class="rsvp-copy"><p class="eyebrow">SIZNI INTIZORLIK BILAN KUTAMIZ</p><h2>Quvonchimizga<br><em>sherik bo‘ling.</em></h2><p>Tayyorgarligimiz uchun tashrifingiz haqida xabar bersangiz, mamnun bo‘lamiz.</p><svg class="rsvp-sprig" aria-hidden="true"><use href="#sprig"/></svg></div>
-        <form id="rsvp-form" action="{% url 'rsvp' %}" method="post" class="rsvp-form">
-          {% csrf_token %}
-          <div class="honeypot" aria-hidden="true"><label for="website">Veb-sayt</label><input id="website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
-          <div id="form-status" role="status" tabindex="-1" class="form-status{% if responded and not form.errors %} success{% endif %}">{% if form.errors %}Iltimos, kiritilgan ma’lumotlarni tekshiring. {{ form.non_field_errors }}{% elif responded %}Rahmat! Javobingiz saqlangan. Istasangiz, uni yangilashingiz mumkin.{% endif %}</div>
-          <div class="field"><label for="guest-name">Ism-familiyangiz <span>*</span></label><input type="text" id="guest-name" name="name" autocomplete="name" placeholder="Ismingizni kiriting" minlength="2" maxlength="100" required value="{{ form.name.value|default_if_none:'' }}" aria-describedby="name-error"><div id="name-error" class="field-error">{{ form.name.errors }}</div></div>
-          <fieldset class="attendance"><legend>Tashrif buyurasizmi? <span>*</span></legend><div class="attendance-options"><label><input type="radio" name="attendance" value="yes" required{% if form.attendance.value == 'yes' %} checked{% endif %}><span>Albatta, kelaman</span></label><label><input type="radio" name="attendance" value="no"{% if form.attendance.value == 'no' %} checked{% endif %}><span>Kela olmayman</span></label></div><div id="attendance-error" class="field-error">{{ form.attendance.errors }}</div></fieldset>
-          <div class="field" id="guests-field"><label for="guest-count">Necha kishi tashrif buyurasiz?</label><select id="guest-count" name="guests" aria-describedby="guests-error"><option value="1"{% if form.guests.value|stringformat:'s' == '1' %} selected{% endif %}>1 kishi — o‘zim</option><option value="2"{% if form.guests.value|stringformat:'s' == '2' %} selected{% endif %}>2 kishi</option><option value="3"{% if form.guests.value|stringformat:'s' == '3' %} selected{% endif %}>3 kishi</option><option value="4"{% if form.guests.value|stringformat:'s' == '4' %} selected{% endif %}>4 kishi</option><option value="5"{% if form.guests.value|stringformat:'s' == '5' %} selected{% endif %}>5 kishi</option><option value="6"{% if form.guests.value|stringformat:'s' == '6' %} selected{% endif %}>6 kishi</option><option value="7"{% if form.guests.value|stringformat:'s' == '7' %} selected{% endif %}>7 kishi</option><option value="8"{% if form.guests.value|stringformat:'s' == '8' %} selected{% endif %}>8 kishi</option><option value="9"{% if form.guests.value|stringformat:'s' == '9' %} selected{% endif %}>9 kishi</option><option value="10"{% if form.guests.value|stringformat:'s' == '10' %} selected{% endif %}>10 kishi</option></select><div id="guests-error" class="field-error">{{ form.guests.errors }}</div></div>
-          <div class="field"><label for="guest-message">Ezgu tilaklaringiz <span class="optional">(ixtiyoriy)</span></label><textarea id="guest-message" name="message" rows="3" maxlength="1000" placeholder="Qalbingizdagi samimiy tilaklar…" aria-describedby="message-error">{{ form.message.value|default_if_none:'' }}</textarea><div id="message-error" class="field-error">{{ form.message.errors }}</div></div>
-          <button class="button submit-button" type="submit"><span>Javobni yuborish</span><svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></button>
-          <p class="privacy-note">Javobingiz faqat to‘y egalari uchun ko‘rinadi.</p>
-        </form>
-      </div>
-    </section>
   </main>
 
   <footer class="site-footer centered">

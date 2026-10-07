@@ -17,15 +17,14 @@ python manage.py runserver
 
 Brauzer: http://127.0.0.1:8000
 
-Mehmonlar javoblarini ko‘rish:
+Admin panelga kirish:
 
 ```sh
 python manage.py createsuperuser
 ```
 
-So‘ng `/admin/` sahifasiga kiring. Ishtirok holati bo‘yicha filtr va ism bo‘yicha
-qidiruv bor. Telefon yoki email yig‘ilmaydi. Mehmon javoblari faqat admin uchun
-ochiq. Bir brauzer sessiyasida qayta yuborish avvalgi javobni yangilaydi.
+So‘ng `/admin/` sahifasiga kiring. Avval saqlangan mehmon javoblari mavjud bo‘lsa,
+shu yerda ko‘rinadi. Saytda mehmon javoblarini yig‘ish bo‘limi olib tashlangan.
 
 ## Nimalar ishlaydi
 
@@ -33,12 +32,10 @@ ochiq. Bir brauzer sessiyasida qayta yuborish avvalgi javobni yangilaydi.
   taklifnoma chiqishi va asosiy sahifaga yumshoq o‘tish. Sahifa oxirida qayta
   ochish mumkin. Klaviatura, Escape va kamaytirilgan animatsiya rejimi ishlaydi.
 - Original Samarqand uslubidagi akvarel, mahalliy shriftlar, responsive dizayn.
-- Taklif matni, oyat mazmuni, salovat, kelin-kuyovga duo va mahalliy eslab qolish.
+- Taklif matni, oyat mazmuni, salovat va kelin-kuyovga duo.
 - Toshkent vaqtida hisoblangan jonli sanoq va haqiqiy `.ics` kalendar fayli.
 - Foydalanuvchi bergan Google Maps havolasi.
 - Asl instrumental fon musiqasi, ovozni yoqish/o‘chirish, sahifa yashirilganda pauza.
-- SQLite’da saqlanadigan RSVP; server validatsiyasi, CSRF, honeypot, sessiya bo‘yicha
-  8 soniyalik qayta yuborish cheklovi. JavaScript bo‘lmasa ham forma ishlaydi.
 - Ovoz foydalanuvchi bosgandan keyin boshlanadi. Ochilish oynasida ovozsiz ochish
   tanlovi bor. Brauzer avtomatik ovozni taqiqlasa, suzuvchi musiqa tugmasi ishlaydi.
 - `prefers-reduced-motion`, semantik sarlavhalar, ko‘rinadigan fokus va no-JS mazmun.
@@ -77,8 +74,6 @@ tasodifiy `DJANGO_SECRET_KEY`, haqiqiy domen va HTTPS zarur. Production WSGI ser
 uchun mo‘ljallanmagan. `python manage.py collectstatic --noinput` bajariladi.
 
 SQLite fayli uchun doimiy disk va zaxira nusxa kerak. Ko‘p serverli hostingda
-PostgreSQL’ga o‘tiladi. Ommaviy tarqatishdan oldin hostingda IP bo‘yicha so‘rov
-cheklovi sozlanishi tavsiya etiladi: sessiya cheklovi yangi cookie bilan chetlab
-o‘tilishi mumkin. To‘y tugagach, mehmonlar ma’lumotlarini kerak bo‘lmaganida o‘chiring.
+PostgreSQL’ga o‘tiladi.
 
 Manbalar va tasvir generatsiyasi: [ASSETS.md](ASSETS.md).
