@@ -23,7 +23,7 @@
     try {
       await audio.play();
       safeStore.set('ag-music', 'on');
-      $('#audio-status').textContent = 'Sokin ohang yoqildi.';
+      $('#audio-status').textContent = 'Musiqa yoqildi.';
     } catch {
       $('#audio-status').textContent = 'Ohangni ijro etib bo‘lmadi. Musiqa tugmasini yana bosing.';
     } finally {

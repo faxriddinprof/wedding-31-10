@@ -35,7 +35,7 @@ shu yerda ko‘rinadi. Saytda mehmon javoblarini yig‘ish bo‘limi olib tashla
 - Taklif matni, oyat mazmuni, salovat va kelin-kuyovga duo.
 - Toshkent vaqtida hisoblangan jonli sanoq va haqiqiy `.ics` kalendar fayli.
 - Foydalanuvchi bergan Google Maps havolasi.
-- Asl instrumental fon musiqasi, ovozni yoqish/o‘chirish, sahifa yashirilganda pauza.
+- Lokal “Una Mattina” fon musiqasi, ovozni yoqish/o‘chirish, sahifa yashirilganda pauza.
 - Ovoz foydalanuvchi bosgandan keyin boshlanadi. Ochilish oynasida ovozsiz ochish
   tanlovi bor. Brauzer avtomatik ovozni taqiqlasa, suzuvchi musiqa tugmasi ishlaydi.
 - `prefers-reduced-motion`, semantik sarlavhalar, ko‘rinadigan fokus va no-JS mazmun.
@@ -46,12 +46,12 @@ shu yerda ko‘rinadi. Saytda mehmon javoblarini yig‘ish bo‘limi olib tashla
 - Rang, shrift, joylashuv: `static/invitation/style.css`.
 - Interaktivlik: `static/invitation/app.js`.
 - Sana va xarita: `invitation/views.py`; matndagi sana va kalendar ham mos o‘zgartirilsin.
-- Musiqa: `static/invitation/audio/sokin-ohang.mp3`.
+- Musiqa: `static/invitation/audio/una-mattina.mp3`.
 
-Bu ohang loyiha uchun kod yordamida sintezlangan original sokin instrumental
-kompozitsiya; salovat yoki Qur’on tilovati sifatida taqdim etilmaydi. Istalgan,
-foydalanish huquqi mavjud nashid yoki boshqa audio bilan almashtirish mumkin.
-Qayta yaratish:
+Hozir foydalanuvchi taqdim etgan “Ludovico Einaudi — Una Mattina” MP3 fayli
+loyiha ichidan ijro etiladi; YouTube yoki tashqi pleer ishlatilmaydi.
+Avvalgi original instrumental fayllar zaxira sifatida saqlangan, lekin pleerga
+ulanmagan. Avvalgi kompozitsiyani qayta yaratish:
 
 ```sh
 python3 tools/generate_audio.py

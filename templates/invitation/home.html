@@ -38,7 +38,6 @@
         <div class="hero-content">
           <p class="bismillah" lang="ar" dir="rtl">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
           <p class="eyebrow">ALLOHNING NOMI BILAN</p>
-          <p class="hero-intro">Bir umrga, birga.</p>
           <h1 id="couple-names">Asliddin<span class="name-and">&</span>Guzal</h1>
           <div class="hero-rule" aria-hidden="true"><span></span><svg class="icon"><use href="#icon-star"/></svg><span></span></div>
           <p class="hero-subtitle">NIKOH TO‘YIGA TAKLIFNOMA</p>
@@ -152,15 +151,14 @@
     <button id="replay-invitation" class="replay-invitation" type="button" hidden>Konvertni qayta ochish</button>
   </footer>
 
-  <audio id="background-audio" loop preload="none"><source src="{% static 'invitation/audio/sokin-ohang.mp3' %}" type="audio/mpeg"></audio>
-  <button id="music-toggle" class="music-toggle" type="button" aria-label="Musiqani yoqish" aria-pressed="false" hidden><span class="music-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="music-label">Sokin ohang</span><svg class="icon" aria-hidden="true"><use id="sound-icon" href="#icon-muted"/></svg></button>
+  <audio id="background-audio" loop preload="none"><source src="{% static 'invitation/audio/una-mattina.mp3' %}" type="audio/mpeg"></audio>
+  <button id="music-toggle" class="music-toggle" type="button" aria-label="Musiqani yoqish" aria-pressed="false" hidden><svg class="icon" aria-hidden="true"><use id="sound-icon" href="#icon-muted"/></svg></button>
   <div id="audio-status" class="sr-only" role="status"></div>
 
-  <dialog id="welcome" class="welcome-dialog envelope-intro" aria-labelledby="welcome-title" aria-describedby="welcome-description">
+  <dialog id="welcome" class="welcome-dialog envelope-intro" aria-label="Asliddin va Guzalning nikoh to‘yiga taklifnomasi" aria-describedby="welcome-description">
     <div class="envelope-layout">
       <div class="envelope-heading">
         <p class="eyebrow">SIZ UCHUN, MEHR BILAN</p>
-        <h2 id="welcome-title">Bir umrga, <em>birga.</em></h2>
       </div>
       <button id="open-invitation" class="envelope-trigger" type="button" aria-label="Asliddin va Guzalning taklifnoma konvertini ochish" aria-describedby="welcome-description">
         <span class="envelope-shadow" aria-hidden="true"></span>
@@ -186,7 +184,7 @@
       </button>
       <div class="envelope-controls">
         <p id="welcome-description" class="envelope-hint"><span aria-hidden="true">⌃</span>Ochish uchun konvert ustiga bosing</p>
-        <label class="welcome-music"><input type="checkbox" id="welcome-music" checked> Sokin ohang bilan ochish</label>
+        <label class="welcome-music"><input type="checkbox" id="welcome-music" checked> Musiqa bilan ochish</label>
       </div>
     </div>
   </dialog>

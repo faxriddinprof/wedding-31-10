@@ -35,5 +35,10 @@ Original SIL Open Font License matnlari `static/invitation/fonts/licenses/` ichi
 
 ## Musiqa
 
+Faol audio: `static/invitation/audio/una-mattina.mp3` — foydalanuvchi taqdim
+etgan “Ludovico Einaudi — Una Mattina” fayli. Lokal HTML audio pleeri orqali
+ijro etiladi. Faylning manbasi va foydalanish litsenziyasi loyiha tomonidan
+tekshirilmagan.
+
 `sokin-ohang.mp3` — `tools/generate_audio.py` yordamida sintez qilingan original
-48 soniyalik instrumental kompozitsiya. Begona yozuv ishlatilmagan.
+48 soniyalik instrumental kompozitsiya. Zaxira sifatida saqlangan, faol emas.

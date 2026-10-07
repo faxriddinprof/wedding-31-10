@@ -7,6 +7,13 @@ from .views import EVENT_DATE
 
 
 class InvitationTests(TestCase):
+    def test_music_uses_local_una_mattina_file(self):
+        response = self.client.get(reverse("home"))
+        self.assertContains(response, '/static/invitation/audio/una-mattina.mp3')
+        self.assertContains(response, 'id="background-audio" loop')
+        self.assertNotContains(response, 'sokin-ohang.mp3')
+        self.assertNotContains(response, 'youtube')
+
     def test_invitation_contains_correct_event_and_venue(self):
         response = self.client.get(reverse("home"))
         self.assertContains(response, "Asliddin")
