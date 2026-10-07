@@ -42,3 +42,9 @@ tekshirilmagan.
 
 `sokin-ohang.mp3` — `tools/generate_audio.py` yordamida sintez qilingan original
 48 soniyalik instrumental kompozitsiya. Zaxira sifatida saqlangan, faol emas.
+
+## Havola preview’i
+
+`invitation-preview.jpg` — mavjud HTML/CSS konverti, mahalliy shriftlar va
+original `envelope-florals.svg` yordamida `tools/generate_share_preview.cjs`
+orqali render qilingan 1200×630 kartochka. Open Graph preview’i uchun ishlatiladi.

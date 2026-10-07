@@ -2,6 +2,8 @@ from datetime import datetime
 from zoneinfo import ZoneInfo
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.templatetags.static import static
+from django.urls import reverse
 from django.utils import timezone
 from django.views.decorators.http import require_GET
 from django.views.decorators.cache import never_cache
@@ -22,7 +24,12 @@ def page_context():
 @require_GET
 @never_cache
 def home(request):
-    return render(request, "invitation/home.html", page_context())
+    context = page_context()
+    context.update({
+        "share_url": request.build_absolute_uri(reverse("home")),
+        "share_image_url": request.build_absolute_uri(static("invitation/images/invitation-preview.jpg")),
+    })
+    return render(request, "invitation/home.html", context)
 
 
 @require_GET

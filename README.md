@@ -67,6 +67,22 @@ python manage.py test
 
 ## Internetga joylash
 
+### Telegram havola preview’i
+
+Sahifa serverdan Open Graph metama’lumotlarini chiqaradi. Preview rasmi:
+`static/invitation/images/invitation-preview.jpg` (1200×630). Mavjud CSS
+konvertidan tayyorlangan; ismlar, sana va vaqt ham rasmda ko‘rinadi.
+Uni qayta yaratish: `node tools/generate_share_preview.cjs` (Playwright va
+Chrome talab qilinadi; zarur bo‘lsa `PLAYWRIGHT_MODULE` yo‘lini belgilang).
+
+Telegram preview’ni olishi uchun sayt va `/static/` rasmlari internetdan
+ochilishi kerak; localhost havolasi ishlamaydi. Reverse proxy ishlatilsa,
+Django haqiqiy HTTPS protokolini ko‘rishi ta’minlansin. Telegramdagi yakuniy
+preview ommaviy URL bilan tekshiriladi; ko‘rinishi klient sozlamalari va
+keshiga ham bog‘liq. Kartochka rasmi statik, animatsiya sayt ochilganda ishlaydi.
+
+### Production sozlamalari
+
 Hozir loyiha mahalliy ishga tushirish uchun tayyor. `.env.example` dagi o‘zgaruvchilar
 hosting muhitida eksport qilinadi; `.env` avtomatik o‘qilmaydi. `DJANGO_DEBUG=0`,
 tasodifiy `DJANGO_SECRET_KEY`, haqiqiy domen va HTTPS zarur. Production WSGI server
