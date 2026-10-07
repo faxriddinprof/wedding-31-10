@@ -52,30 +52,61 @@
   const welcomeMusic = $('#welcome-music');
   welcomeMusic.checked = safeStore.get('ag-music') !== 'off';
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const openedKey = 'ag-envelope-opened-v2';
+  let opening = false;
+  let openingTimer;
   let previouslyOpened = false;
-  try { previouslyOpened = sessionStorage.getItem('ag-opened') === 'yes'; } catch { /* Optional preference. */ }
+  try { previouslyOpened = sessionStorage.getItem(openedKey) === 'yes'; } catch { /* Optional preference. */ }
   const finishOpening = () => {
+    if (!opening) return;
+    opening = false;
+    clearTimeout(openingTimer);
     welcome.close();
     document.body.style.overflow = '';
-    try { sessionStorage.setItem('ag-opened', 'yes'); } catch { /* Optional preference. */ }
+    try { sessionStorage.setItem(openedKey, 'yes'); } catch { /* Optional preference. */ }
+    window.scrollTo({ top: 0, behavior: 'instant' });
     $('#couple-names').setAttribute('tabindex', '-1');
     $('#couple-names').focus({ preventScroll: true });
   };
   $('#open-invitation').addEventListener('click', () => {
+    if (opening) return;
+    opening = true;
     if (welcomeMusic.checked) playAudio();
-    else safeStore.set('ag-music', 'off');
+    else { audio.pause(); safeStore.set('ag-music', 'off'); }
     $('#open-invitation').disabled = true;
+    welcomeMusic.disabled = true;
     welcome.classList.add('is-opening');
-    window.setTimeout(finishOpening, reducedMotion ? 0 : 450);
+    // Match the final CSS fade, with a fallback if animationend is not delivered.
+    openingTimer = window.setTimeout(finishOpening, reducedMotion ? 0 : 2900);
   });
-  welcome.addEventListener('close', () => { document.body.style.overflow = ''; });
+  welcome.addEventListener('animationend', (event) => {
+    if (event.target === welcome && event.animationName === 'invitationReveal') finishOpening();
+  });
+  welcome.addEventListener('close', () => {
+    clearTimeout(openingTimer);
+    opening = false;
+    document.body.style.overflow = '';
+  });
   welcome.addEventListener('cancel', () => {
-    try { sessionStorage.setItem('ag-opened', 'yes'); } catch { /* Optional preference. */ }
+    try { sessionStorage.setItem(openedKey, 'yes'); } catch { /* Optional preference. */ }
   });
-  // Direct section links and form validation pages must remain immediately usable.
-  if (!previouslyOpened && !location.hash && !$('#form-status').textContent.trim() && typeof welcome.showModal === 'function') {
+  const showEnvelope = () => {
+    clearTimeout(openingTimer);
+    opening = false;
+    welcome.classList.remove('is-opening');
+    $('#open-invitation').disabled = false;
+    welcomeMusic.disabled = false;
+    welcomeMusic.checked = safeStore.get('ag-music') !== 'off';
     welcome.showModal();
     document.body.style.overflow = 'hidden';
+  };
+  if (typeof welcome.showModal === 'function') {
+    $('#replay-invitation').hidden = false;
+    $('#replay-invitation').addEventListener('click', showEnvelope);
+  }
+  // Direct section links and form validation pages must remain immediately usable.
+  if (!previouslyOpened && !location.hash && !$('#form-status').textContent.trim() && typeof welcome.showModal === 'function') {
+    showEnvelope();
   }
 
   const eventTime = Date.parse(document.body.dataset.eventDate);

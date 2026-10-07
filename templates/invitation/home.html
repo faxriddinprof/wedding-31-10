@@ -15,6 +15,7 @@
   <link rel="preload" href="{% static 'invitation/fonts/cormorant-regular.ttf' %}" as="font" type="font/ttf" crossorigin>
   <link rel="preload" href="{% static 'invitation/images/garden.jpg' %}" as="image" fetchpriority="high">
   <link rel="stylesheet" href="{% static 'invitation/style.css' %}">
+  <link rel="stylesheet" href="{% static 'invitation/envelope.css' %}">
   <script src="{% static 'invitation/app.js' %}" defer></script>
 </head>
 <body data-event-date="{{ event_iso }}">
@@ -167,23 +168,45 @@
     <a class="footer-names" href="#asosiy">Asliddin <em>&</em> Guzal</a>
     <p class="eyebrow">31 OKTYABR 2026 · SAMARQAND</p>
     <p class="footer-dua">Alloh xayrli va barakali qilsin. Omin.</p>
+    <button id="replay-invitation" class="replay-invitation" type="button" hidden>Konvertni qayta ochish</button>
   </footer>
 
   <audio id="background-audio" loop preload="none"><source src="{% static 'invitation/audio/sokin-ohang.mp3' %}" type="audio/mpeg"></audio>
   <button id="music-toggle" class="music-toggle" type="button" aria-label="Musiqani yoqish" aria-pressed="false" hidden><span class="music-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="music-label">Sokin ohang</span><svg class="icon" aria-hidden="true"><use id="sound-icon" href="#icon-muted"/></svg></button>
   <div id="audio-status" class="sr-only" role="status"></div>
 
-  <dialog id="welcome" class="welcome-dialog" aria-labelledby="welcome-title" aria-describedby="welcome-description">
-    <div class="welcome-paper">
-      <div class="welcome-corner corner-top" aria-hidden="true"></div><div class="welcome-corner corner-bottom" aria-hidden="true"></div>
-      <p class="eyebrow">SIZ UCHUN, MEHR BILAN</p>
-      <svg class="welcome-sprig" aria-hidden="true"><use href="#sprig"/></svg>
-      <div class="wax-seal" aria-hidden="true">A<span>&</span>G</div>
-      <h2 id="welcome-title">Bir go‘zal kunimizga<br><em>aziz mehmon bo‘ling.</em></h2>
-      <p id="welcome-description">Asliddin va Guzalning nikoh to‘yiga<br>samimiy taklifnoma</p>
-      <button class="button welcome-open" id="open-invitation" type="button">Taklifnomani ochish<svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></button>
-      <label class="welcome-music"><input type="checkbox" id="welcome-music" checked> Sokin ohang bilan ochish</label>
-      <span class="welcome-date">31 · 10 · 2026</span>
+  <dialog id="welcome" class="welcome-dialog envelope-intro" aria-labelledby="welcome-title" aria-describedby="welcome-description">
+    <div class="envelope-layout">
+      <div class="envelope-heading">
+        <p class="eyebrow">SIZ UCHUN, MEHR BILAN</p>
+        <h2 id="welcome-title">Bir umrga, <em>birga.</em></h2>
+      </div>
+      <button id="open-invitation" class="envelope-trigger" type="button" aria-label="Asliddin va Guzalning taklifnoma konvertini ochish" aria-describedby="welcome-description">
+        <span class="envelope-shadow" aria-hidden="true"></span>
+        <span class="envelope-back" aria-hidden="true"></span>
+        <span class="envelope-glow" aria-hidden="true"></span>
+        <span class="envelope-letter" aria-hidden="true">
+          <span class="letter-border"></span>
+          <span class="letter-bismillah" lang="ar" dir="rtl">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</span>
+          <span class="letter-eyebrow">NIKOH TO‘YIGA TAKLIFNOMA</span>
+          <span class="letter-names">Asliddin<span>&</span>Guzal</span>
+          <span class="letter-date">31 · 10 · 2026</span>
+          <span class="letter-invite">Sizni lutf bilan taklif etamiz.</span>
+        </span>
+        <span class="envelope-side envelope-left" aria-hidden="true"></span>
+        <span class="envelope-side envelope-right" aria-hidden="true"></span>
+        <span class="envelope-bottom" aria-hidden="true"></span>
+        <svg class="envelope-sprig envelope-sprig-left" aria-hidden="true"><use href="#sprig"/></svg>
+        <svg class="envelope-sprig envelope-sprig-right" aria-hidden="true"><use href="#sprig"/></svg>
+        <img class="envelope-flowers-bottom" src="{% static 'invitation/images/envelope-florals.svg' %}" alt="" aria-hidden="true" width="320" height="210">
+        <span class="envelope-flap" aria-hidden="true"><span class="envelope-flap-paper"></span><img class="envelope-flowers-top" src="{% static 'invitation/images/envelope-florals.svg' %}" alt="" width="320" height="210"></span>
+        <span class="envelope-seal" aria-hidden="true"><span class="seal-initials">A<em>&</em>G</span></span>
+        <span class="envelope-inscription" aria-hidden="true">ASLIDDIN & GUZAL</span>
+      </button>
+      <div class="envelope-controls">
+        <p id="welcome-description" class="envelope-hint"><span aria-hidden="true">⌃</span>Ochish uchun konvert ustiga bosing</p>
+        <label class="welcome-music"><input type="checkbox" id="welcome-music" checked> Sokin ohang bilan ochish</label>
+      </div>
     </div>
   </dialog>
 </body>

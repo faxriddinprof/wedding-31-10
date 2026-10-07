@@ -29,7 +29,9 @@ ochiq. Bir brauzer sessiyasida qayta yuborish avvalgi javobni yangilaydi.
 
 ## Nimalar ishlaydi
 
-- Nafis muhrli ochilish oynasi; klaviatura, Escape va ekranni o‘qish vositalariga mos.
+- Ustiga bosib ochiladigan gulli konvert: muhr ajralishi, 3D qopqoq, ichidan
+  taklifnoma chiqishi va asosiy sahifaga yumshoq o‘tish. Sahifa oxirida qayta
+  ochish mumkin. Klaviatura, Escape va kamaytirilgan animatsiya rejimi ishlaydi.
 - Original Samarqand uslubidagi akvarel, mahalliy shriftlar, responsive dizayn.
 - Taklif matni, oyat mazmuni, salovat, kelin-kuyovga duo va mahalliy eslab qolish.
 - Toshkent vaqtida hisoblangan jonli sanoq va haqiqiy `.ics` kalendar fayli.
