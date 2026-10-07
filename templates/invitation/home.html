@@ -1,0 +1,190 @@
+{% load static %}
+<!doctype html>
+<html lang="uz">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f4ec">
+  <title>Asliddin & Guzal — Nikoh to‘yiga taklifnoma</title>
+  <meta name="description" content="Asliddin va Guzalning nikoh to‘yiga lutfan taklif etamiz. 31-oktyabr 2026, soat 18:00. ODILBEK 555 to‘yxonasi, Mirbozor, Samarqand.">
+  <meta property="og:title" content="Asliddin & Guzal · 31.10.2026">
+  <meta property="og:description" content="Hayotimizning eng go‘zal kunini siz bilan baham ko‘rishni istaymiz. Nikoh to‘yimizga lutfan taklif etamiz.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{% static 'invitation/images/garden.jpg' %}">
+  <link rel="icon" href="{% static 'invitation/images/favicon.svg' %}" type="image/svg+xml">
+  <link rel="preload" href="{% static 'invitation/fonts/cormorant-regular.ttf' %}" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="{% static 'invitation/images/garden.jpg' %}" as="image" fetchpriority="high">
+  <link rel="stylesheet" href="{% static 'invitation/style.css' %}">
+  <script src="{% static 'invitation/app.js' %}" defer></script>
+</head>
+<body data-event-date="{{ event_iso }}">
+  {% include 'invitation/icons.html' %}
+  <a class="skip-link" href="#asosiy">Asosiy mazmunga o‘tish</a>
+  <div class="reading-progress" aria-hidden="true"></div>
+  <header class="site-header">
+    <a class="monogram" href="#asosiy" aria-label="Asliddin va Guzal, bosh sahifa">A<span>&</span>G</a>
+    <nav aria-label="Sahifa bo‘limlari">
+      <a href="#taklif">Taklifnoma</a><a href="#duo">Ezgu duo</a><a href="#manzil">Manzil</a>
+    </nav>
+    <a class="header-date" href="#sana">31 <span>·</span> 10 <span>·</span> 2026</a>
+  </header>
+
+  <main id="asosiy">
+    <section class="hero" aria-labelledby="couple-names">
+      <div class="hero-side hero-side-left" aria-hidden="true">IKKI QALB · BIR TAQDIR</div>
+      <div class="hero-frame">
+        <img class="hero-art" src="{% static 'invitation/images/garden.jpg' %}" width="1024" height="1536" alt="Samarqand me’morchiligidan ilhomlangan ravoq, sokin bog‘ va oq gullar" fetchpriority="high">
+        <div class="hero-content">
+          <p class="bismillah" lang="ar" dir="rtl">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</p>
+          <p class="eyebrow">ALLOHNING NOMI BILAN</p>
+          <p class="hero-intro">Bir umrga, birga.</p>
+          <h1 id="couple-names">Asliddin<span class="name-and">&</span>Guzal</h1>
+          <div class="hero-rule" aria-hidden="true"><span></span><svg class="icon"><use href="#icon-star"/></svg><span></span></div>
+          <p class="hero-subtitle">NIKOH TO‘YIGA TAKLIFNOMA</p>
+          <a class="hero-date" href="#sana">31 . 10 . 2026</a>
+          <p class="hero-location">Samarqand · Mirbozor</p>
+        </div>
+        <a class="scroll-cue" href="#taklif" aria-label="Taklifnomani o‘qish"><span>QALBIMIZDAN SIZGA</span><span class="scroll-line"></span></a>
+      </div>
+      <div class="hero-side hero-side-right" aria-hidden="true">MEHR · SAKINAT · BARAKA</div>
+    </section>
+
+    <section class="verse-section reveal" aria-label="Qur’oni karimdan">
+      <svg class="ornament icon" aria-hidden="true"><use href="#icon-star"/></svg>
+      <p class="verse-arabic" lang="ar" dir="rtl">وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً</p>
+      <blockquote>«Va orangizda mehr va rahmat paydo qildi.»</blockquote>
+      <a class="source-link" href="https://quran.com/30/21" target="_blank" rel="noopener noreferrer">Rum surasi, 21-oyat mazmunidan</a>
+    </section>
+
+    <section id="taklif" class="invitation-section section-pad reveal">
+      <div class="section-number" aria-hidden="true">01 <span></span> TAKLIF</div>
+      <svg class="invitation-sprig sprig-left" aria-hidden="true"><use href="#sprig"/></svg>
+      <svg class="invitation-sprig sprig-right" aria-hidden="true"><use href="#sprig"/></svg>
+      <div class="narrow centered">
+        <p class="eyebrow">AZIZ VA QADRLI MEHMONIMIZ</p>
+        <h2>Sizni lutf bilan<br><em>taklif etamiz.</em></h2>
+        <p class="greeting">Assalomu alaykum va rahmatullohi va barokatuh!</p>
+        <p>Allohning marhamati, ota-onalarimizning duolari bilan yangi hayot sari qadam qo‘ymoqdamiz.</p>
+        <p>Sizni va oila a’zolaringizni nikoh to‘yimiz munosabati bilan yoziladigan dasturxonimizga lutfan taklif etamiz. Ushbu saodatli kunimizda aziz mehmonimiz bo‘lib, quvonchimizga sherik bo‘lishingizni istaymiz.</p>
+        <p class="invitation-closing">Tashrifingiz — biz uchun ehtirom,<br>duolaringiz — eng go‘zal tuhfa.</p>
+        <div class="signature">Asliddin <span>&</span> Guzal</div>
+        <p class="eyebrow family-label">VA ULARNING OILALARI</p>
+      </div>
+    </section>
+
+    <section id="sana" class="date-section section-pad">
+      <div class="section-number light" aria-hidden="true">02 <span></span> INTIQ KUTILGAN KUN</div>
+      <div class="date-layout content-width">
+        <div class="date-copy reveal">
+          <p class="eyebrow">INSHOOLLOH</p>
+          <h2>Bir go‘zal kun.<br><em>Bir umr xotira.</em></h2>
+          <div class="date-detail"><span class="big-day">31</span><div><span class="date-month">Oktyabr, 2026</span><span class="date-weekday">Shanba · soat 18:00</span></div></div>
+          <p class="date-note">Uchrashuvimizga qolgan har bir lahzani<br>ezgu niyat bilan kutmoqdamiz.</p>
+          <a class="button button-light" href="{% url 'calendar' %}"><svg class="icon" aria-hidden="true"><use href="#icon-calendar"/></svg>Kalendarga qo‘shish<svg class="icon arrow-icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
+        </div>
+        <div class="calendar-card reveal">
+          <div class="calendar-heading"><span>O K T Y A B R</span><span>2026</span></div>
+          <div class="calendar-grid" aria-label="2026-yil oktyabr oyi, to‘y sanasi 31-oktyabr">
+            <span class="weekday">Du</span><span class="weekday">Se</span><span class="weekday">Ch</span><span class="weekday">Pa</span><span class="weekday">Ju</span><span class="weekday">Sh</span><span class="weekday">Ya</span>
+            {% for blank in calendar_blanks %}<span aria-hidden="true"></span>{% endfor %}
+            {% for day in calendar_days %}<span{% if day == 31 %} class="wedding-day" aria-label="31-oktyabr, nikoh to‘yi"{% endif %}>{{ day }}{% if day == 31 %}<svg class="calendar-heart" aria-hidden="true"><use href="#icon-heart"/></svg>{% endif %}</span>{% endfor %}
+          </div>
+          <div class="calendar-caption"><svg class="icon" aria-hidden="true"><use href="#icon-heart"/></svg>Bizning kunimiz</div>
+        </div>
+      </div>
+      <div class="countdown-wrap reveal">
+        <p id="countdown-heading" class="eyebrow">SAODATLI KUNIMIZGACHA</p>
+        <div class="countdown" role="timer" aria-label="To‘yga qolgan vaqt">
+          <div><span id="days">—</span><small>KUN</small></div><span class="countdown-dot">:</span>
+          <div><span id="hours">—</span><small>SOAT</small></div><span class="countdown-dot">:</span>
+          <div><span id="minutes">—</span><small>DAQIQA</small></div><span class="countdown-dot">:</span>
+          <div><span id="seconds">—</span><small>SONIYA</small></div>
+        </div>
+        <noscript><p>31-oktyabr 2026-yil, soat 18:00 (Toshkent vaqti).</p></noscript>
+      </div>
+    </section>
+
+    <section id="duo" class="prayer-section section-pad reveal">
+      <div class="section-number" aria-hidden="true">03 <span></span> QALBDAN DUO</div>
+      <div class="narrow centered">
+        <div class="prayer-emblem" aria-hidden="true"><svg class="icon"><use href="#icon-star"/></svg></div>
+        <p class="eyebrow">ENG GO‘ZAL TO‘YONA — DUO</p>
+        <h2>Salovat ayting,<br><em>duoda eslang.</em></h2>
+        <p>Azizlar, Payg‘ambarimiz Muhammad ﷺ ga salovat aytib, yangi hayot ostonasida turgan kelin-kuyov haqqiga duo qilishingizni so‘raymiz.</p>
+        <div class="salawat-card">
+          <p class="salawat-arabic" lang="ar" dir="rtl">اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ</p>
+          <p class="transliteration">Allohumma solli ‘ala Muhammad<br>va ‘ala oli Muhammad.</p>
+          <span class="small-divider" aria-hidden="true"></span>
+          <p class="dua-text">Allohim, bu oilaga mehr, xotirjamlik va baraka ato et. Ularni yaxshilikda birlashtir, muhabbatlarini bardavom qil.</p>
+          <button class="button prayer-button" id="prayer-button" type="button" hidden><svg class="icon" aria-hidden="true"><use href="#icon-heart"/></svg><span>Salovat aytdim, duo qildim</span></button>
+          <p class="prayer-thanks" id="prayer-thanks" role="status"></p>
+        </div>
+        <p class="prayer-footnote">«Alloh sizga baraka bersin va ikkingizni yaxshilikda birlashtirsin.»</p>
+        <a class="source-link" href="https://sunnah.com/abudawud:2130" target="_blank" rel="noopener noreferrer">Nikoh tabrigi duosi mazmunidan · Abu Dovud, 2130</a>
+      </div>
+    </section>
+
+    <section id="manzil" class="venue-section section-pad">
+      <div class="section-number" aria-hidden="true">04 <span></span> DIYDOR MANZILI</div>
+      <div class="venue-layout content-width">
+        <div class="venue-illustration reveal">
+          <img src="{% static 'invitation/images/garden.jpg' %}" loading="lazy" width="1024" height="1536" alt="Oq gullar va sarvlar orasidagi me’moriy bog‘ning badiiy tasviri">
+          <span class="art-caption">MEHR BILAN KUTILASIZ</span>
+        </div>
+        <div class="venue-copy reveal">
+          <p class="eyebrow">QUTLUG‘ QADAMINGIZGA MUNTAZIRMIZ</p>
+          <h2>Diydor uchun<br><em>go‘zal bir manzil.</em></h2>
+          <div class="venue-address"><svg class="icon" aria-hidden="true"><use href="#icon-pin"/></svg><div><h3>ODILBEK 555</h3><p>To‘yxonasi<br>Mirbozor, Samarqand viloyati</p></div></div>
+          <div class="venue-time"><svg class="icon" aria-hidden="true"><use href="#icon-calendar"/></svg><p>31-oktyabr, shanba<br><strong>Boshlanishi — 18:00</strong></p></div>
+          <a class="button" href="{{ map_url }}" target="_blank" rel="noopener noreferrer">Xaritada ko‘rish<svg class="icon arrow-icon" aria-hidden="true"><use href="#icon-arrow"/></svg></a>
+          <p class="venue-note">Yo‘lingiz bexatar, qadamingiz qutlug‘ bo‘lsin.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="ishtirok" class="rsvp-section section-pad reveal">
+      <div class="section-number" aria-hidden="true">05 <span></span> BIRGA NISHONLAYMIZ</div>
+      <div class="rsvp-layout content-width">
+        <div class="rsvp-copy"><p class="eyebrow">SIZNI INTIZORLIK BILAN KUTAMIZ</p><h2>Quvonchimizga<br><em>sherik bo‘ling.</em></h2><p>Tayyorgarligimiz uchun tashrifingiz haqida xabar bersangiz, mamnun bo‘lamiz.</p><svg class="rsvp-sprig" aria-hidden="true"><use href="#sprig"/></svg></div>
+        <form id="rsvp-form" action="{% url 'rsvp' %}" method="post" class="rsvp-form">
+          {% csrf_token %}
+          <div class="honeypot" aria-hidden="true"><label for="website">Veb-sayt</label><input id="website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+          <div id="form-status" role="status" tabindex="-1" class="form-status{% if responded and not form.errors %} success{% endif %}">{% if form.errors %}Iltimos, kiritilgan ma’lumotlarni tekshiring. {{ form.non_field_errors }}{% elif responded %}Rahmat! Javobingiz saqlangan. Istasangiz, uni yangilashingiz mumkin.{% endif %}</div>
+          <div class="field"><label for="guest-name">Ism-familiyangiz <span>*</span></label><input type="text" id="guest-name" name="name" autocomplete="name" placeholder="Ismingizni kiriting" minlength="2" maxlength="100" required value="{{ form.name.value|default_if_none:'' }}" aria-describedby="name-error"><div id="name-error" class="field-error">{{ form.name.errors }}</div></div>
+          <fieldset class="attendance"><legend>Tashrif buyurasizmi? <span>*</span></legend><div class="attendance-options"><label><input type="radio" name="attendance" value="yes" required{% if form.attendance.value == 'yes' %} checked{% endif %}><span>Albatta, kelaman</span></label><label><input type="radio" name="attendance" value="no"{% if form.attendance.value == 'no' %} checked{% endif %}><span>Kela olmayman</span></label></div><div id="attendance-error" class="field-error">{{ form.attendance.errors }}</div></fieldset>
+          <div class="field" id="guests-field"><label for="guest-count">Necha kishi tashrif buyurasiz?</label><select id="guest-count" name="guests" aria-describedby="guests-error"><option value="1"{% if form.guests.value|stringformat:'s' == '1' %} selected{% endif %}>1 kishi — o‘zim</option><option value="2"{% if form.guests.value|stringformat:'s' == '2' %} selected{% endif %}>2 kishi</option><option value="3"{% if form.guests.value|stringformat:'s' == '3' %} selected{% endif %}>3 kishi</option><option value="4"{% if form.guests.value|stringformat:'s' == '4' %} selected{% endif %}>4 kishi</option><option value="5"{% if form.guests.value|stringformat:'s' == '5' %} selected{% endif %}>5 kishi</option><option value="6"{% if form.guests.value|stringformat:'s' == '6' %} selected{% endif %}>6 kishi</option><option value="7"{% if form.guests.value|stringformat:'s' == '7' %} selected{% endif %}>7 kishi</option><option value="8"{% if form.guests.value|stringformat:'s' == '8' %} selected{% endif %}>8 kishi</option><option value="9"{% if form.guests.value|stringformat:'s' == '9' %} selected{% endif %}>9 kishi</option><option value="10"{% if form.guests.value|stringformat:'s' == '10' %} selected{% endif %}>10 kishi</option></select><div id="guests-error" class="field-error">{{ form.guests.errors }}</div></div>
+          <div class="field"><label for="guest-message">Ezgu tilaklaringiz <span class="optional">(ixtiyoriy)</span></label><textarea id="guest-message" name="message" rows="3" maxlength="1000" placeholder="Qalbingizdagi samimiy tilaklar…" aria-describedby="message-error">{{ form.message.value|default_if_none:'' }}</textarea><div id="message-error" class="field-error">{{ form.message.errors }}</div></div>
+          <button class="button submit-button" type="submit"><span>Javobni yuborish</span><svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></button>
+          <p class="privacy-note">Javobingiz faqat to‘y egalari uchun ko‘rinadi.</p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer centered">
+    <svg class="icon footer-star" aria-hidden="true"><use href="#icon-star"/></svg>
+    <p class="footer-message">Yaxshi kunlar, yaxshi insonlar bilan.</p>
+    <a class="footer-names" href="#asosiy">Asliddin <em>&</em> Guzal</a>
+    <p class="eyebrow">31 OKTYABR 2026 · SAMARQAND</p>
+    <p class="footer-dua">Alloh xayrli va barakali qilsin. Omin.</p>
+  </footer>
+
+  <audio id="background-audio" loop preload="none"><source src="{% static 'invitation/audio/sokin-ohang.mp3' %}" type="audio/mpeg"></audio>
+  <button id="music-toggle" class="music-toggle" type="button" aria-label="Musiqani yoqish" aria-pressed="false" hidden><span class="music-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span><span class="music-label">Sokin ohang</span><svg class="icon" aria-hidden="true"><use id="sound-icon" href="#icon-muted"/></svg></button>
+  <div id="audio-status" class="sr-only" role="status"></div>
+
+  <dialog id="welcome" class="welcome-dialog" aria-labelledby="welcome-title" aria-describedby="welcome-description">
+    <div class="welcome-paper">
+      <div class="welcome-corner corner-top" aria-hidden="true"></div><div class="welcome-corner corner-bottom" aria-hidden="true"></div>
+      <p class="eyebrow">SIZ UCHUN, MEHR BILAN</p>
+      <svg class="welcome-sprig" aria-hidden="true"><use href="#sprig"/></svg>
+      <div class="wax-seal" aria-hidden="true">A<span>&</span>G</div>
+      <h2 id="welcome-title">Bir go‘zal kunimizga<br><em>aziz mehmon bo‘ling.</em></h2>
+      <p id="welcome-description">Asliddin va Guzalning nikoh to‘yiga<br>samimiy taklifnoma</p>
+      <button class="button welcome-open" id="open-invitation" type="button">Taklifnomani ochish<svg class="icon" aria-hidden="true"><use href="#icon-arrow"/></svg></button>
+      <label class="welcome-music"><input type="checkbox" id="welcome-music" checked> Sokin ohang bilan ochish</label>
+      <span class="welcome-date">31 · 10 · 2026</span>
+    </div>
+  </dialog>
+</body>
+</html>
