@@ -21,12 +21,15 @@ const fs = require('node:fs');
       assert(await page.locator('#welcome').evaluate(el => el.scrollWidth <= el.clientWidth), `${name}: no horizontal overflow`);
       await page.screenshot({ path: `test-results/envelope-${name}.png` });
       await page.locator('#open-invitation').click();
+      assert(await page.locator('#open-invitation').isDisabled(), 'Repeated clicks cannot restart opening');
       await page.waitForTimeout(700);
       assert(await page.locator('#welcome').evaluate(el => el.open), 'Animation does not close immediately');
-      assert.notEqual(await page.locator('.envelope-flap').evaluate(el => getComputedStyle(el).transform), 'none');
+      assert.notEqual(await page.locator('.envelope-seal').evaluate(el => getComputedStyle(el).filter), 'none', 'Seal illuminates before the flap opens');
       if (name === 'mobile') {
         await page.screenshot({ path: 'test-results/envelope-opening.png' });
-        await page.waitForTimeout(900);
+        await page.locator('.envelope-bridge').waitFor({ state: 'attached' });
+        assert.equal(await page.locator('.envelope-bridge').count(), 1, 'The same card travels into the hero');
+        assert.equal(await page.locator('#couple-names').count(), 1, 'Transition clones do not duplicate IDs');
         await page.screenshot({ path: 'test-results/envelope-letter.png' });
       }
       await page.waitForFunction(() => !document.querySelector('#welcome').open, { timeout: 5000 });
@@ -34,6 +37,8 @@ const fs = require('node:fs');
       assert.equal(await page.locator('#couple-names').evaluate(el => getComputedStyle(el).outlineStyle), 'none', 'Names have no focus frame');
       assert(await page.locator('#background-audio').evaluate(el => el.paused));
       assert.equal(await page.evaluate(() => document.body.style.overflow), '');
+      assert.equal(await page.locator('.envelope-bridge, .envelope-preview').count(), 0, 'Temporary cards are removed');
+      assert(!(await page.locator('body').evaluate(el => el.classList.contains('is-revealing'))), 'Transition classes are cleaned up');
       await page.locator('#replay-invitation').click();
       assert(await page.locator('#welcome').evaluate(el => el.open), 'Replay works');
       assert(!(await page.locator('#open-invitation').isDisabled()));
@@ -50,6 +55,24 @@ const fs = require('node:fs');
       await page.reload({ waitUntil: 'networkidle' });
       assert(!(await page.locator('#welcome').evaluate(el => el.open)), 'Repeat visit preserves session');
       await context.close();
+    }
+    for (const interruption of ['escape', 'resize', 'motion']) {
+      const interrupted = await browser.newContext({ viewport: { width: 390, height: 844 } });
+      const tab = await interrupted.newPage();
+      await tab.goto(base, { waitUntil: 'networkidle' });
+      await tab.keyboard.press('Escape');
+      await tab.locator('#replay-invitation').click();
+      await tab.locator('#welcome-music').uncheck();
+      await tab.locator('#open-invitation').click();
+      await tab.locator('.envelope-bridge').waitFor({ state: 'attached' });
+      assert.equal(await tab.evaluate(() => window.scrollY), 0, 'Replay returns to the hero before handoff');
+      if (interruption === 'escape') await tab.keyboard.press('Escape');
+      if (interruption === 'resize') await tab.setViewportSize({ width: 844, height: 390 });
+      if (interruption === 'motion') await tab.emulateMedia({ reducedMotion: 'reduce' });
+      await tab.waitForFunction(() => !document.querySelector('#welcome').open);
+      assert.equal(await tab.locator('.envelope-bridge, .envelope-preview').count(), 0, `${interruption}: transition is cleaned up`);
+      assert.equal(await tab.evaluate(() => document.body.style.overflow), '');
+      await interrupted.close();
     }
     const context = await browser.newContext({ reducedMotion: 'reduce' });
     const page = await context.newPage();

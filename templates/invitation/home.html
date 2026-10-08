@@ -176,6 +176,7 @@
         <span class="envelope-shadow" aria-hidden="true"></span>
         <span class="envelope-back" aria-hidden="true"></span>
         <span class="envelope-glow" aria-hidden="true"></span>
+        <span class="envelope-portal" aria-hidden="true"></span>
         <span class="envelope-letter" aria-hidden="true">
           <span class="letter-border"></span>
           <span class="letter-bismillah" lang="ar" dir="rtl">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</span>
@@ -184,15 +185,22 @@
           <span class="letter-date">31 · 10 · 2026</span>
           <span class="letter-invite">Sizni lutf bilan taklif etamiz.</span>
         </span>
+        <span class="envelope-pocket" aria-hidden="true">
         <span class="envelope-side envelope-left" aria-hidden="true"></span>
         <span class="envelope-side envelope-right" aria-hidden="true"></span>
         <span class="envelope-bottom" aria-hidden="true"></span>
         <svg class="envelope-sprig envelope-sprig-left" aria-hidden="true"><use href="#sprig"/></svg>
         <svg class="envelope-sprig envelope-sprig-right" aria-hidden="true"><use href="#sprig"/></svg>
         <img class="envelope-flowers-bottom" src="{% static 'invitation/images/envelope-florals.svg' %}" alt="" aria-hidden="true" width="320" height="210">
-        <span class="envelope-flap" aria-hidden="true"><span class="envelope-flap-paper"></span><img class="envelope-flowers-top" src="{% static 'invitation/images/envelope-florals.svg' %}" alt="" width="320" height="210"></span>
-        <span class="envelope-seal" aria-hidden="true"><span class="seal-initials">A<em>&</em>G</span></span>
+        <img class="envelope-flowers-bottom envelope-flower-light" src="{% static 'invitation/images/envelope-florals.svg' %}" alt="" aria-hidden="true" width="320" height="210">
         <span class="envelope-inscription" aria-hidden="true">ASLIDDIN & GO‘ZAL</span>
+        </span>
+        <span class="envelope-flap" aria-hidden="true">
+        <span class="envelope-flap-paper"></span>
+        <img class="envelope-flowers-top" src="{% static 'invitation/images/envelope-florals.svg' %}" alt="" width="320" height="210">
+        <img class="envelope-flowers-top envelope-flower-light" src="{% static 'invitation/images/envelope-florals.svg' %}" alt="" width="320" height="210">
+        <span class="envelope-seal" aria-hidden="true"><span class="seal-initials">A<em>&</em>G</span></span>
+        </span>
       </button>
       <div class="envelope-controls">
         <p id="welcome-description" class="envelope-hint"><span aria-hidden="true">⌃</span>Ochish uchun konvert ustiga bosing</p>

@@ -51,10 +51,58 @@
   const welcome = $('#welcome');
   const welcomeMusic = $('#welcome-music');
   welcomeMusic.checked = safeStore.get('ag-music') !== 'off';
-  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const openedKey = 'ag-envelope-opened-v2';
   let opening = false;
   let openingTimer;
+  let handoffTimer;
+  let bridge;
+  const letter = $('.envelope-letter');
+  const hero = $('.hero-frame');
+  const cloneHero = () => {
+    const clone = hero.cloneNode(true);
+    clone.removeAttribute('id');
+    clone.querySelectorAll('[id]').forEach(element => element.removeAttribute('id'));
+    clone.setAttribute('aria-hidden', 'true');
+    clone.inert = true;
+    return clone;
+  };
+  const clearTransition = () => {
+    clearTimeout(openingTimer);
+    clearTimeout(handoffTimer);
+    bridge?.remove();
+    bridge = null;
+    letter.querySelector('.envelope-preview')?.remove();
+    letter.classList.remove('has-preview');
+    letter.style.removeProperty('height');
+  };
+  const prepareLetter = () => {
+    const preview = cloneHero();
+    const target = hero.getBoundingClientRect();
+    const scale = letter.getBoundingClientRect().width / target.width;
+    preview.classList.add('envelope-preview');
+    Object.assign(preview.style, { width: `${target.width}px`, height: `${target.height}px`, transform: `scale(${scale})` });
+    letter.style.height = `${target.height * scale}px`;
+    letter.classList.add('has-preview');
+    letter.appendChild(preview);
+  };
+  const startHandoff = () => {
+    if (!opening || bridge) return;
+    const source = letter.getBoundingClientRect();
+    const target = hero.getBoundingClientRect();
+    bridge = cloneHero();
+    bridge.classList.add('envelope-bridge');
+    const transform = `translate(${source.left - target.left}px, ${source.top - target.top}px) scale(${source.width / target.width}, ${source.height / target.height})`;
+    Object.assign(bridge.style, { left: `${target.left}px`, top: `${target.top}px`, width: `${target.width}px`, height: `${target.height}px`, transform });
+    welcome.appendChild(bridge);
+    welcome.classList.add('is-handoff');
+    if (typeof bridge.animate === 'function') {
+      const duration = Number(getComputedStyle(welcome).getPropertyValue('--handoff-duration')) || 1050;
+      bridge.animate([{ transform }, { transform: 'none' }], { duration, easing: 'cubic-bezier(.22,.61,.36,1)', fill: 'forwards' });
+    } else {
+      finishOpening();
+    }
+  };
   let previouslyOpened = false;
   try { previouslyOpened = sessionStorage.getItem(openedKey) === 'yes'; } catch { /* Optional preference. */ }
   const finishOpening = () => {
@@ -62,7 +110,9 @@
     opening = false;
     clearTimeout(openingTimer);
     welcome.close();
+    clearTransition();
     document.body.style.overflow = '';
+    document.body.classList.remove('is-revealing');
     try { sessionStorage.setItem(openedKey, 'yes'); } catch { /* Optional preference. */ }
     window.scrollTo({ top: 0, behavior: 'instant' });
     $('#couple-names').setAttribute('tabindex', '-1');
@@ -75,31 +125,47 @@
     else { audio.pause(); safeStore.set('ag-music', 'off'); }
     $('#open-invitation').disabled = true;
     welcomeMusic.disabled = true;
+    window.scrollTo({ top: 0, behavior: 'instant' });
+    if (!reducedMotion) prepareLetter();
     welcome.classList.add('is-opening');
+    document.body.classList.add('is-revealing');
     // Match the final CSS fade, with a fallback if animationend is not delivered.
-    openingTimer = window.setTimeout(finishOpening, reducedMotion ? 0 : 2900);
+    const timing = getComputedStyle(welcome);
+    const openingDuration = Number(timing.getPropertyValue('--opening-duration')) || 5500;
+    const letterEnd = (Number(timing.getPropertyValue('--letter-delay')) || 2500) + (Number(timing.getPropertyValue('--letter-duration')) || 1900);
+    if (!reducedMotion) handoffTimer = window.setTimeout(startHandoff, letterEnd + 100);
+    openingTimer = window.setTimeout(finishOpening, reducedMotion ? 0 : openingDuration + 250);
   });
   welcome.addEventListener('animationend', (event) => {
+    if (event.target === letter && event.animationName === 'letterReveal') startHandoff();
     if (event.target === welcome && event.animationName === 'invitationReveal') finishOpening();
   });
   welcome.addEventListener('close', () => {
-    clearTimeout(openingTimer);
+    clearTransition();
     opening = false;
     document.body.style.overflow = '';
+    document.body.classList.remove('is-revealing');
   });
   welcome.addEventListener('cancel', () => {
     try { sessionStorage.setItem(openedKey, 'yes'); } catch { /* Optional preference. */ }
   });
   const showEnvelope = () => {
-    clearTimeout(openingTimer);
+    clearTransition();
     opening = false;
-    welcome.classList.remove('is-opening');
+    welcome.classList.remove('is-opening', 'is-handoff');
+    document.body.classList.remove('is-revealing');
     $('#open-invitation').disabled = false;
     welcomeMusic.disabled = false;
     welcomeMusic.checked = safeStore.get('ag-music') !== 'off';
     welcome.showModal();
     document.body.style.overflow = 'hidden';
   };
+  // A changed viewport invalidates the measured destination; finish without a jump.
+  window.addEventListener('resize', () => { if (opening) finishOpening(); });
+  matchMedia('(prefers-reduced-motion: reduce)').addEventListener('change', event => {
+    reducedMotion = event.matches;
+    if (event.matches && opening) finishOpening();
+  });
   if (typeof welcome.showModal === 'function') {
     $('#replay-invitation').hidden = false;
     $('#replay-invitation').addEventListener('click', showEnvelope);

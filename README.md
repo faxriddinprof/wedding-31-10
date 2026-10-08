@@ -28,8 +28,10 @@ shu yerda ko‘rinadi. Saytda mehmon javoblarini yig‘ish bo‘limi olib tashla
 
 ## Nimalar ishlaydi
 
-- Ustiga bosib ochiladigan gulli konvert: muhr ajralishi, 3D qopqoq, ichidan
-  taklifnoma chiqishi va asosiy sahifaga yumshoq o‘tish. Sahifa oxirida qayta
+- Ustiga bosib ochiladigan gulli konvert: muhr va gul naqshlarining oltin nurda
+  yorishishi, muhr bilan birga 3D qopqoq ko‘tarilishi va ichkaridan nur taralishi.
+  Kartochka asosiy sahifadagi tasvir joyiga silliq kattalashadi. Ochilish taxminan
+  5.5 soniya. Sahifa oxirida qayta
   ochish mumkin. Klaviatura, Escape va kamaytirilgan animatsiya rejimi ishlaydi.
 - Original Samarqand uslubidagi akvarel, mahalliy shriftlar, responsive dizayn.
 - Taklif matni, oyat mazmuni, salovat va kelin-kuyovga duo.
