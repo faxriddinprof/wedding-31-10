@@ -31,6 +31,7 @@ const fs = require('node:fs');
       }
       await page.waitForFunction(() => !document.querySelector('#welcome').open, { timeout: 5000 });
       assert.equal(await page.evaluate(() => document.activeElement.id), 'couple-names');
+      assert.equal(await page.locator('#couple-names').evaluate(el => getComputedStyle(el).outlineStyle), 'none', 'Names have no focus frame');
       assert(await page.locator('#background-audio').evaluate(el => el.paused));
       assert.equal(await page.evaluate(() => document.body.style.overflow), '');
       await page.locator('#replay-invitation').click();

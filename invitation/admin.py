@@ -10,6 +10,6 @@ class GuestResponseAdmin(admin.ModelAdmin):
     readonly_fields = ("created_at", "updated_at")
 
 
-admin.site.site_header = "Asliddin & Guzal · Mehmonlar"
+admin.site.site_header = "Asliddin & Go‘zal · Mehmonlar"
 admin.site.site_title = "Taklifnoma boshqaruvi"
 admin.site.index_title = "To‘yga tayyorgarlik"

@@ -25,7 +25,7 @@ class InvitationTests(TestCase):
     def test_invitation_contains_correct_event_and_venue(self):
         response = self.client.get(reverse("home"))
         self.assertContains(response, "Asliddin")
-        self.assertContains(response, "Guzal")
+        self.assertContains(response, "Go‘zal")
         self.assertContains(response, '2026-10-31T18:00:00+05:00')
         self.assertContains(response, "ODILBEK 555")
         self.assertContains(response, "https://maps.app.goo.gl/s7fCjrmRfJhqSfjN9?g_st=atm")

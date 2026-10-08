@@ -36,17 +36,17 @@ def home(request):
 def calendar_event(request):
     # RFC 5545: fold UTF-8 lines at 75 octets, never splitting a code point.
     lines = [
-        "BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Asliddin Guzal//Wedding//UZ",
+        "BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Asliddin Go‘zal//Wedding//UZ",
         "CALSCALE:GREGORIAN", "METHOD:PUBLISH", "BEGIN:VEVENT",
         "UID:asliddin-guzal-20261031@wedding.local",
         "DTSTAMP:" + timezone.now().strftime("%Y%m%dT%H%M%SZ"),
         "DTSTART:20261031T130000Z",
-        "SUMMARY:Asliddin va Guzal — nikoh to‘yi",
+        "SUMMARY:Asliddin va Go‘zal — nikoh to‘yi",
         "LOCATION:ODILBEK 555 to‘yxonasi\\, Mirbozor\\, Samarqand viloyati",
         "DESCRIPTION:Sizni nikoh to‘yimizga lutfan taklif etamiz.\\nManzil: " + MAP_URL,
         "URL:" + MAP_URL,
         "BEGIN:VALARM", "TRIGGER:-P1D", "ACTION:DISPLAY",
-        "DESCRIPTION:Ertaga Asliddin va Guzalning nikoh to‘yi", "END:VALARM",
+        "DESCRIPTION:Ertaga Asliddin va Go‘zalning nikoh to‘yi", "END:VALARM",
         "END:VEVENT", "END:VCALENDAR",
     ]
     folded = []
@@ -59,5 +59,5 @@ def calendar_event(request):
             part += char
         folded.append(part)
     result = HttpResponse("\r\n".join(folded) + "\r\n", content_type="text/calendar; charset=utf-8")
-    result["Content-Disposition"] = 'attachment; filename="Asliddin-Guzal.ics"'
+    result["Content-Disposition"] = 'attachment; filename="Asliddin-Gozal.ics"'
     return result

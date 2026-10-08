@@ -1,4 +1,4 @@
-# Asliddin & Guzal · Nikoh to‘yiga taklifnoma
+# Asliddin & Go‘zal · Nikoh to‘yiga taklifnoma
 
 Django 6, server-rendered HTML, CSS va vanilla JavaScript. 31-oktyabr 2026-yil,
 18:00, Asia/Tashkent. ODILBEK 555, Mirbozor, Samarqand viloyati.

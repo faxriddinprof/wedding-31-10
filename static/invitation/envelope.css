@@ -1,4 +1,6 @@
 /* A layered paper envelope: seal → flap → letter → page. */
+/* The heading receives focus after opening, but is not an interactive control. */
+#couple-names:focus { outline: none; }
 .music-toggle { width: 48px; height: 48px; min-height: 48px; padding: 0; border-radius: 50%; display: grid; place-items: center; }
 .welcome-dialog.envelope-intro {
   width: 100%; max-width: none; height: 100%; height: 100dvh;

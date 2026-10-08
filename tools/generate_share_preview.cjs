@@ -29,7 +29,7 @@ const asset = (relative, mime) => `data:${mime};base64,${fs.readFileSync(path.jo
       h1{font:76px/.95 var(--serif);margin:0}h1 span{display:block;font-size:44px;color:var(--gold);margin:10px 0}
       .rule{height:1px;background:#c6b58980;width:85px;margin:25px auto}
       .invite{font:25px var(--serif);margin:0 0 20px}.date{font-size:15px;letter-spacing:1px;margin:0 0 12px}.place{font-size:12px;color:#827b69;margin:0}
-    </style></head><body>${icons}<div class="card">${envelope}<div class="copy"><p class="eyebrow">NIKOH TO‘YIGA TAKLIFNOMA</p><h1>Asliddin<span>&</span>Guzal</h1><div class="rule"></div><p class="invite">Sizni lutf bilan taklif etamiz.</p><p class="date">31-oktyabr 2026 · 18:00</p><p class="place">ODILBEK 555 · Samarqand</p></div></div></body></html>`, { waitUntil: 'load' });
+    </style></head><body>${icons}<div class="card">${envelope}<div class="copy"><p class="eyebrow">NIKOH TO‘YIGA TAKLIFNOMA</p><h1>Asliddin<span>&</span>Go‘zal</h1><div class="rule"></div><p class="invite">Sizni lutf bilan taklif etamiz.</p><p class="date">31-oktyabr 2026 · 18:00</p><p class="place">ODILBEK 555 · Samarqand</p></div></div></body></html>`, { waitUntil: 'load' });
     await page.evaluate(() => document.fonts.ready);
     await page.screenshot({ path: path.join(root, 'static/invitation/images/invitation-preview.jpg'), type: 'jpeg', quality: 92 });
   } finally { await browser.close(); }
