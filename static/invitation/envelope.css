@@ -1,4 +1,12 @@
 /* A layered paper envelope: seal → flap → letter → page. */
+.invitation-section .narrow > p.invitation-copy {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(22px, 2vw, 26px);
+  line-height: 1.65;
+  letter-spacing: 0;
+}
 /* The heading receives focus after opening, but is not an interactive control. */
 #couple-names:focus { outline: none; }
 .music-toggle { width: 48px; height: 48px; min-height: 48px; padding: 0; border-radius: 50%; display: grid; place-items: center; }
