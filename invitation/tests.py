@@ -7,6 +7,14 @@ from .views import EVENT_DATE
 
 
 class InvitationTests(TestCase):
+    def test_prayer_text_uses_reviewed_transliteration(self):
+        response = self.client.get(reverse("home"))
+        self.assertContains(response, "Allohumma solli ’ala Muhammadiv-va ’ala ali Muhammad.")
+        self.assertContains(response, "اللَّهُمَّ صَلِّ عَلَى مُحَمَّدٍ وَعَلَى آلِ مُحَمَّدٍ")
+        self.assertContains(response, "ustingizga baraka yog‘dirsin")
+        self.assertContains(response, "Nikoh tabrigi duosi mazmunidan")
+        self.assertNotContains(response, "va ‘ala oli Muhammad")
+
     def test_share_preview_is_absolute_and_server_rendered(self):
         response = self.client.get(reverse("home"), secure=True)
         self.assertContains(response, 'property="og:image" content="https://testserver/static/invitation/images/invitation-preview-v2.jpg"')
