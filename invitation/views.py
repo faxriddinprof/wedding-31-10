@@ -27,7 +27,7 @@ def home(request):
     context = page_context()
     context.update({
         "share_url": request.build_absolute_uri(reverse("home")),
-        "share_image_url": request.build_absolute_uri(static("invitation/images/invitation-preview.jpg")),
+        "share_image_url": request.build_absolute_uri(static("invitation/images/invitation-preview-v2.jpg")),
     })
     return render(request, "invitation/home.html", context)
 

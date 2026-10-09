@@ -9,7 +9,7 @@ from .views import EVENT_DATE
 class InvitationTests(TestCase):
     def test_share_preview_is_absolute_and_server_rendered(self):
         response = self.client.get(reverse("home"), secure=True)
-        self.assertContains(response, 'property="og:image" content="https://testserver/static/invitation/images/invitation-preview.jpg"')
+        self.assertContains(response, 'property="og:image" content="https://testserver/static/invitation/images/invitation-preview-v2.jpg"')
         self.assertContains(response, 'property="og:url" content="https://testserver/"')
         self.assertContains(response, 'property="og:image:width" content="1200"')
         self.assertContains(response, 'property="og:image:height" content="630"')
